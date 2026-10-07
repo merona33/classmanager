@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#A04025" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <title>담임의 노트 — 학급 운영 일지</title>
+    <script src="./config.js"></script>
+    <script src="./sync.js"></script>
+    <script type="module" crossorigin src="./assets/index-Chug7KFz.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BZj9jpBg.css">
+  </head>
+  <body style="background-color:#F2ECDD;">
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

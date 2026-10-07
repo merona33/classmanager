@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 로그인한 본인의 자료(users/{본인 uid}/kv/*)만 읽고 쓸 수 있음. 그 외는 모두 거부.
+    match /users/{uid}/kv/{key} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

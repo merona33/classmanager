@@ -1,0 +1,26 @@
+{
+  "name": "담임의 노트 — 학급 운영 일지",
+  "short_name": "담임의 노트",
+  "description": "고등학교 담임교사를 위한 학급 관리 도구",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FBF7EB",
+  "theme_color": "#A04025",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
