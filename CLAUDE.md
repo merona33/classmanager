@@ -23,7 +23,7 @@ app/
   index.html              # Entry; loads config.js + sync.js (classic scripts), then the module bundle; registers sw.js
   config.js               # Firebase apiKey + projectId (empty = sync disabled, plain localStorage)
   sync.js                 # Optional multi-computer sync: login overlay, pull on start, debounced push, status badge
-  sw.js                   # Service worker (cache name `classmanager-v13`)
+  sw.js                   # Service worker (cache name `classmanager-v14`)
   manifest.webmanifest    # PWA manifest (lang ko, standalone)
   icon*.png, apple-touch-icon.png
   assets/
