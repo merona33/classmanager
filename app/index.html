@@ -11,6 +11,25 @@
     <script src="./config.js"></script>
     <script src="./sync.js"></script>
     <script type="module" crossorigin src="./assets/index-Chug7KFz.js"></script>
+    <style>
+      /* 성적 입력 표: 번호·이름 열을 왼쪽에 고정 */
+      .cm-c1, .cm-c2 { position: sticky; z-index: 1; background: var(--paper); white-space: nowrap; box-sizing: border-box; }
+      .cm-c1 { left: 0; width: 56px; min-width: 56px; }
+      .cm-c2 { left: 56px; width: 96px; min-width: 96px; box-shadow: 1px 0 0 var(--line); }
+      thead .cm-c1, thead .cm-c2 { background: var(--paper-2); }
+      tbody tr:hover > .cm-c1, tbody tr:hover > .cm-c2 { background: var(--paper-2); }
+      /* 자리 배치: 좁은 창에서도 페이지가 옆으로 밀리지 않도록 (화면 전용, 인쇄에는 영향 없음) */
+      .cm-hdr-btns { flex-wrap: wrap; justify-content: flex-end; }
+      .cm-hdr-btns button { white-space: nowrap; }
+      @media screen {
+        .seat-print-area > div { min-width: 0; }
+        .seat-canvas { min-height: 0 !important; }
+      }
+      @media screen and (max-width: 900px) {
+        .seat-print-area { grid-template-columns: minmax(0, 1fr); }
+        .seat-print-area > div { grid-column: 1 / -1; }
+      }
+    </style>
     <link rel="stylesheet" crossorigin href="./assets/index-BZj9jpBg.css">
   </head>
   <body style="background-color:#F2ECDD;">

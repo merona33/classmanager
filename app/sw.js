@@ -1,7 +1,7 @@
 // 담임의 노트 — Service Worker
 // 오프라인 사용을 위해 모든 리소스를 캐시합니다.
 
-const CACHE = 'classmanager-v15';
+const CACHE = 'classmanager-v17';
 const CORE = [
   './',
   './index.html',
