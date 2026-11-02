@@ -1,13 +1,14 @@
 // 담임의 노트 — Service Worker
 // 오프라인 사용을 위해 모든 리소스를 캐시합니다.
 
-const CACHE = 'classmanager-v26';
+const CACHE = 'classmanager-v27';
 const CORE = [
   './',
   './index.html',
   './manifest.webmanifest',
   './config.js',
   './sync.js',
+  './notify.js',
   './icon-192.png',
   './icon-512.png',
 ];
@@ -46,6 +47,17 @@ self.addEventListener('fetch', (event) => {
           return response;
         })
         .catch(() => caches.match('./index.html'));
+    })
+  );
+});
+
+// 일정 알림을 누르면 열려 있는 앱 창으로 이동(없으면 새로 연다)
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      for (const c of list) if ('focus' in c) return c.focus();
+      return self.clients.openWindow ? self.clients.openWindow('./') : undefined;
     })
   );
 });

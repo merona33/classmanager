@@ -21,7 +21,7 @@
   var SECURETOKEN = cfg.tokenUrl || 'https://securetoken.googleapis.com';
   var FIRESTORE = cfg.firestoreUrl || 'https://firestore.googleapis.com';
   var DB = 'projects/' + cfg.projectId + '/databases/(default)/documents';
-  var PREFIXES = ['students:', 'seating:', 'grades:', 'relations:', 'counsel:'];
+  var PREFIXES = ['students:', 'seating:', 'grades:', 'relations:', 'counsel:', 'schedule:'];
   var SESSION_KEY = 'cmsync:session';
   var META_KEY = 'cmsync:meta';
 
