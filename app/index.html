@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#A04025" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" type="image/png" href="icon.png" />
@@ -28,6 +28,55 @@
       @media screen and (max-width: 900px) {
         .seat-print-area { grid-template-columns: minmax(0, 1fr); }
         .seat-print-area > div { grid-column: 1 / -1; }
+      }
+      /* 모바일: 왼쪽 사이드 메뉴 → 위쪽 반 선택 줄 + 아래쪽 고정 탭 바 */
+      @media screen and (max-width: 768px) {
+        /* 번들 CSS가 이 <style> 뒤에 로드되므로 .cm-shell 접두로 우선순위를 높인다 */
+        .cm-shell { flex-direction: column; }
+        .cm-shell > .cm-side { width: auto; border-right-width: 0; border-bottom: 1px solid var(--line); }
+        /* 화면 본문의 12칸 2단 배치(왼쪽 목록 + 오른쪽 내용)를 한 줄씩 쌓기 */
+        .cm-shell .cm-main .grid-cols-12 { grid-template-columns: minmax(0, 1fr); }
+        .cm-shell .cm-main .grid-cols-12 > * { grid-column: 1 / -1; }
+        /* 상담 내역 등: 학생 목록을 짧게 해서 선택한 학생의 내용이 바로 아래에 보이도록 */
+        .cm-shell .cm-main .grid-cols-12 .max-h-\[70vh\] { max-height: 34vh; }
+        /* 자리 배치: 좌석표를 설정보다 위에, 좁은 책상에 맞게 글자 축소 */
+        .cm-shell .seat-print-area > .col-span-9 { order: -1; }
+        .cm-shell .seat-canvas .desk-card .text-sm { font-size: 11px; white-space: nowrap; letter-spacing: -0.04em; }
+        .cm-shell .seat-canvas .desk-card .text-\[10px\] { font-size: 8px; }
+        .cm-shell .cm-brand { padding: 12px 16px 6px; border-bottom: 0; display: flex; align-items: baseline; gap: 8px; }
+        .cm-brand > div { display: none; }
+        .cm-brand h1 { font-size: 18px; margin: 0; }
+        .cm-brand h1 br { display: none; }
+        .cm-brand h1::before { content: "담임의 노트 · "; font-weight: 400; color: var(--muted); font-size: 13px; }
+        .cm-shell .cm-classpick { padding: 6px 16px 10px; display: flex; align-items: center; gap: 10px; }
+        .cm-classpick > div:first-child { display: none; }
+        .cm-classpick > .grid {
+          display: flex; flex: 1; min-width: 0; gap: 6px;
+          overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        }
+        .cm-classpick > .grid::-webkit-scrollbar { display: none; }
+        .cm-classpick > .grid > button { flex: 0 0 auto; min-width: 40px; height: 38px; font-size: 14px; padding: 0 8px; }
+        .cm-classpick > div:last-child { margin-top: 0; flex: 0 0 auto; }
+        .cm-classpick > div:last-child > span:first-child { font-size: 20px; }
+        .cm-classpick > div:last-child > span:last-child { margin-left: 6px; }
+        .cm-shell .cm-nav {
+          position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+          display: flex; padding: 0 0 env(safe-area-inset-bottom);
+          background: var(--paper-2); border-top: 1px solid var(--line);
+          box-shadow: 0 -2px 10px rgba(0,0,0,.06);
+        }
+        .cm-shell .cm-nav > button {
+          flex: 1 1 0; min-width: 0; width: auto; min-height: 58px;
+          flex-direction: column; justify-content: center; gap: 3px; padding: 6px 2px;
+          border-left: 0; border-top: 3px solid transparent; font-size: 11px;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .cm-shell .cm-nav > button.font-medium { border-top-color: var(--accent); color: var(--accent); }
+        .cm-nav > button > span.font-mono, .cm-nav > button > svg.ml-auto { display: none; }
+        .cm-nav > button > svg { width: 20px; height: 20px; }
+        .cm-nav > button > span.font-display { white-space: nowrap; }
+        .cm-sidefoot { display: none; }
+        .cm-shell > .cm-main { padding: 16px 14px calc(76px + env(safe-area-inset-bottom)); }
       }
     </style>
     <link rel="stylesheet" crossorigin href="./assets/index-BZj9jpBg.css">
