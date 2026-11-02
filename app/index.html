@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#A04025" />
+    <meta name="theme-color" content="#2563EB" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" type="image/png" href="icon.png" />
     <link rel="apple-touch-icon" href="icon.png" />
@@ -44,45 +44,102 @@
         .cm-shell .seat-print-area > .col-span-9 { order: -1; }
         .cm-shell .seat-canvas .desk-card .text-sm { font-size: 11px; white-space: nowrap; letter-spacing: -0.04em; }
         .cm-shell .seat-canvas .desk-card .text-\[10px\] { font-size: 8px; }
-        .cm-shell .cm-brand { padding: 12px 16px 6px; border-bottom: 0; display: flex; align-items: baseline; gap: 8px; }
-        .cm-brand > div { display: none; }
-        .cm-brand h1 { font-size: 18px; margin: 0; }
-        .cm-brand h1 br { display: none; }
-        .cm-brand h1::before { content: "담임의 노트 · "; font-weight: 400; color: var(--muted); font-size: 13px; }
-        .cm-shell .cm-classpick { padding: 6px 16px 10px; display: flex; align-items: center; gap: 10px; }
-        .cm-classpick > div:first-child { display: none; }
-        .cm-classpick > .grid {
+        .cm-shell .cm-brand { padding: 12px 16px 4px; border-bottom: 0; display: flex; align-items: baseline; gap: 8px; }
+        .cm-brand .cm-brand-sub { display: none; }
+        .cm-brand h1 { font-size: 17px; margin: 0; }
+        .cm-shell .cm-classpick { padding: 6px 16px 10px; display: flex; align-items: center; gap: 8px; border-bottom: 0; }
+        .cm-classpick .cm-pick-label, .cm-classpick .cm-clsnow-n { display: none; }
+        .cm-classpick .cm-gradepick { margin: 0; flex: 0 0 auto; }
+        .cm-classpick .cm-grade-b { height: 36px; padding: 0 10px; }
+        .cm-classpick .cm-clsgrid {
           display: flex; flex: 1; min-width: 0; gap: 6px;
           overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
         }
-        .cm-classpick > .grid::-webkit-scrollbar { display: none; }
-        .cm-classpick > .grid > button { flex: 0 0 auto; min-width: 40px; height: 38px; font-size: 14px; padding: 0 8px; }
-        .cm-classpick > div:last-child { margin-top: 0; flex: 0 0 auto; }
-        .cm-classpick > div:last-child > span:first-child { font-size: 20px; }
-        .cm-classpick > div:last-child > span:last-child { margin-left: 6px; }
+        .cm-classpick .cm-clsgrid::-webkit-scrollbar { display: none; }
+        .cm-classpick .cm-cls-b { flex: 0 0 auto; min-width: 40px; height: 36px; font-size: 14px; padding: 0 8px; }
+        .cm-classpick .cm-clsnow { display: none; }
         .cm-shell .cm-nav {
           position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
           display: flex; padding: 0 0 env(safe-area-inset-bottom);
           background: var(--paper-2); border-top: 1px solid var(--line);
-          box-shadow: 0 -2px 10px rgba(0,0,0,.06);
+          box-shadow: 0 -1px 0 rgba(0,0,0,.02);
         }
         .cm-shell .cm-nav > button {
           flex: 1 1 0; min-width: 0; width: auto; min-height: 58px;
           flex-direction: column; justify-content: center; gap: 3px; padding: 6px 2px;
-          border-left: 0; border-top: 3px solid transparent; font-size: 11px;
+          border-left: 0; border-top: 2px solid transparent; font-size: 11px;
           -webkit-tap-highlight-color: transparent;
         }
-        .cm-shell .cm-nav > button.font-medium { border-top-color: var(--accent); color: var(--accent); }
+        .cm-shell .cm-nav > button.font-medium { border-top-color: var(--accent); color: var(--accent); background: transparent; }
         .cm-nav > button > span.font-mono, .cm-nav > button > svg.ml-auto { display: none; }
         .cm-nav > button > svg { width: 20px; height: 20px; }
         .cm-nav > button > span.font-display { white-space: nowrap; }
         .cm-sidefoot { display: none; }
         .cm-shell > .cm-main { padding: 16px 14px calc(76px + env(safe-area-inset-bottom)); }
       }
+
+      /* ── 심플 디자인: 흰색/회색 바탕 + 파란 포인트 ── */
+      .cm-brand-sub { margin-top: 2px; font-size: 12px; color: var(--muted); }
+      .cm-pick-label { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+      .cm-gradepick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; }
+      .cm-grade-b { padding: 6px 0; font-size: 13px; border-radius: 6px; color: var(--ink-2); background: transparent; border: 0; cursor: pointer; }
+      .cm-grade-b.on { background: var(--paper); color: var(--accent); font-weight: 600; box-shadow: 0 0 0 1px var(--line); }
+      .cm-clsgrid { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+      .cm-cls-b { padding: 6px 0; font-size: 13px; border-radius: 6px; border: 1px solid var(--line); background: var(--paper); color: var(--ink-2); cursor: pointer; }
+      .cm-cls-b:hover { border-color: var(--muted); }
+      .cm-cls-b.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+      .cm-clsnow { margin-top: 12px; display: flex; align-items: baseline; justify-content: space-between; }
+      .cm-clsnow-name { font-size: 16px; font-weight: 700; color: var(--ink); }
+      .cm-clsnow-n { font-size: 12px; color: var(--muted); }
+      .cm-nav-on { background: var(--accent-soft); }
+      .cm-side nav button { border-radius: 0; }
+      /* 출석부 */
+      .cm-att-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .cm-att-nav { width: 36px; height: 36px; font-size: 20px; line-height: 1; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink-2); cursor: pointer; }
+      .cm-att-date { height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); font-size: 14px; }
+      .cm-att-date:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+      .cm-att-today { height: 36px; padding: 0 12px; font-size: 13px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--accent); cursor: pointer; }
+      .cm-att-day { font-size: 14px; color: var(--ink-2); margin-left: 4px; }
+      .cm-att-state { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--paper-2); color: var(--muted); }
+      .cm-att-state.done { background: var(--accent-soft); color: var(--accent); }
+      .cm-att-hint { margin-top: 10px; font-size: 12px; color: var(--muted); }
+      .cm-att-row { padding: 10px 16px; border-bottom: 1px solid var(--line-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+      .cm-att-row:last-child { border-bottom: 0; }
+      .cm-att-row.is-marked { background: var(--accent-soft); }
+      .cm-att-who { display: flex; align-items: baseline; gap: 10px; width: 130px; flex: 0 0 auto; }
+      .cm-att-num { width: 22px; text-align: right; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+      .cm-att-name { font-size: 15px; font-weight: 500; }
+      .cm-att-seg { display: flex; gap: 4px; flex: 1; min-width: 0; }
+      .cm-att-b { flex: 1 1 0; min-width: 0; height: 38px; font-size: 13px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink-2); cursor: pointer; }
+      .cm-att-b.on { background: var(--ink); border-color: var(--ink); color: #fff; font-weight: 600; }
+      .cm-att-b.on.is-alert { background: var(--accent); border-color: var(--accent); }
+      .cm-att-detail { flex: 1 0 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding-left: 0; }
+      .cm-att-chip { height: 30px; padding: 0 12px; font-size: 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--ink-2); cursor: pointer; }
+      .cm-att-chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .cm-att-memo { flex: 1 1 180px; min-width: 0; height: 30px; padding: 0 10px; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
+      .cm-att-memo:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+      .cm-att-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .cm-att-stat { text-align: center; padding: 8px 0; border-radius: 8px; background: var(--paper-2); }
+      .cm-att-stat b { display: block; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .cm-att-stat span { font-size: 11px; color: var(--muted); }
+      .cm-att-stat.hl b { color: var(--accent); }
+      .cm-att-tbl { width: 100%; font-size: 13px; text-align: center; }
+      .cm-att-tbl th { font-weight: 500; font-size: 11px; color: var(--muted); padding: 4px 2px; border-bottom: 1px solid var(--line); }
+      .cm-att-tbl td { padding: 6px 2px; border-bottom: 1px solid var(--line-soft); font-variant-numeric: tabular-nums; }
+      .cm-att-tbl td.n { color: var(--accent); font-weight: 700; }
+      .cm-att-tbl td.z { color: var(--line); }
+      @media screen and (max-width: 768px) {
+        .cm-shell .cm-att-row { padding: 12px 14px; }
+        .cm-shell .cm-att-who { width: 100%; }
+        .cm-shell .cm-att-seg { flex: 1 0 100%; }
+        .cm-shell .cm-att-b { height: 44px; font-size: 14px; }
+        .cm-shell .cm-att-bar .cm-att-day, .cm-shell .cm-att-bar .cm-att-state { display: none; }
+        .cm-shell .cm-att-date { flex: 1; min-width: 150px; }
+      }
     </style>
     <link rel="stylesheet" crossorigin href="./assets/index-BZj9jpBg.css">
   </head>
-  <body style="background-color:#F2ECDD;">
+  <body style="background-color:#F5F6F8;">
     <div id="root"></div>
     <script>
       if ('serviceWorker' in navigator) {

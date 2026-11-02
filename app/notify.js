@@ -92,7 +92,8 @@
     return out;
   }
 
-  function label(x) { return x.cls + '반 · ' + (x.ev.time ? x.ev.time + ' ' : '') + x.ev.title; }
+  function clsName(c) { var m = /^(\d+)-(\d+)$/.exec(String(c)); return m ? m[1] + '학년 ' + m[2] + '반' : '1학년 ' + c + '반'; }
+  function label(x) { return clsName(x.cls) + ' · ' + (x.ev.time ? x.ev.time + ' ' : '') + x.ev.title; }
 
   var checking = false;
   async function check() {
@@ -130,7 +131,7 @@
         if (sent[key]) continue;
         if (nowMin >= at - lead && nowMin <= at) {
           var left = at - nowMin;
-          await show((left > 0 ? left + '분 뒤 일정' : '지금 일정') + ' · ' + x.cls + '반',
+          await show((left > 0 ? left + '분 뒤 일정' : '지금 일정') + ' · ' + clsName(x.cls),
             x.ev.time + ' ' + x.ev.title + (x.ev.content ? '\n' + x.ev.content : ''), 'cm-ev-' + x.ev.id);
           sent[key] = Date.now(); changed = true;
         } else if (nowMin > at) {

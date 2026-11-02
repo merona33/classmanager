@@ -21,7 +21,7 @@
   var SECURETOKEN = cfg.tokenUrl || 'https://securetoken.googleapis.com';
   var FIRESTORE = cfg.firestoreUrl || 'https://firestore.googleapis.com';
   var DB = 'projects/' + cfg.projectId + '/databases/(default)/documents';
-  var PREFIXES = ['students:', 'seating:', 'grades:', 'relations:', 'counsel:', 'schedule:'];
+  var PREFIXES = ['students:', 'seating:', 'grades:', 'relations:', 'counsel:', 'schedule:', 'attendance:'];
   var SESSION_KEY = 'cmsync:session';
   var META_KEY = 'cmsync:meta';
 
@@ -272,19 +272,19 @@
   // ───────────── UI ─────────────
   var css = document.createElement('style');
   css.textContent =
-    '#cm-login{position:fixed;inset:0;z-index:99999;background:#F2ECDD;display:flex;align-items:center;justify-content:center;font-family:"Noto Serif KR","Apple SD Gothic Neo","Malgun Gothic",serif;color:#1C1410}' +
-    '#cm-login form{width:340px;max-width:90vw;background:#FBF7EB;border:1px solid #D8C8AD;border-radius:2px;padding:28px}' +
+    '#cm-login{position:fixed;inset:0;z-index:99999;background:#F5F6F8;display:flex;align-items:center;justify-content:center;font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:#111827}' +
+    '#cm-login form{width:340px;max-width:90vw;background:#FFFFFF;border:1px solid #E3E5E8;border-radius:6px;padding:28px}' +
     '#cm-login h1{margin:0 0 4px;font-size:22px}' +
-    '#cm-login p{margin:0 0 18px;font-size:12px;color:#8A7560}' +
-    '#cm-login label{display:block;font-size:11px;color:#8A7560;margin:10px 0 4px}' +
-    '#cm-login input{width:100%;box-sizing:border-box;padding:9px 10px;border:1px solid #D8C8AD;border-radius:2px;background:#fff;font-size:14px}' +
-    '#cm-login button{width:100%;margin-top:18px;padding:10px;border:0;border-radius:2px;background:#A04025;color:#fff;font-size:14px;cursor:pointer}' +
+    '#cm-login p{margin:0 0 18px;font-size:12px;color:#6B7280}' +
+    '#cm-login label{display:block;font-size:11px;color:#6B7280;margin:10px 0 4px}' +
+    '#cm-login input{width:100%;box-sizing:border-box;padding:9px 10px;border:1px solid #E3E5E8;border-radius:6px;background:#fff;font-size:14px}' +
+    '#cm-login button{width:100%;margin-top:18px;padding:10px;border:0;border-radius:6px;background:#2563EB;color:#fff;font-size:14px;cursor:pointer}' +
     '#cm-login button:disabled{opacity:.6;cursor:default}' +
-    '#cm-login .err{min-height:16px;margin-top:10px;font-size:12px;color:#A04025}' +
-    '#cm-badge{position:fixed;right:12px;bottom:10px;z-index:9999;display:flex;align-items:center;gap:8px;padding:4px 10px;font-size:11px;background:#FBF7EB;border:1px solid #D8C8AD;border-radius:999px;color:#443328;font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif}' +
-    '#cm-badge button{border:0;background:none;color:#A04025;cursor:pointer;font-size:11px;padding:0}' +
-    '#cm-stale{position:fixed;left:0;right:0;top:0;z-index:99998;padding:8px 12px;text-align:center;font-size:13px;background:#A04025;color:#fff;font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif}' +
-    '#cm-stale button{margin-left:10px;padding:2px 10px;border:1px solid #fff;border-radius:2px;background:none;color:#fff;cursor:pointer}' +
+    '#cm-login .err{min-height:16px;margin-top:10px;font-size:12px;color:#2563EB}' +
+    '#cm-badge{position:fixed;right:12px;bottom:10px;z-index:9999;display:flex;align-items:center;gap:8px;padding:4px 10px;font-size:11px;background:#FFFFFF;border:1px solid #E3E5E8;border-radius:999px;color:#374151;font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif}' +
+    '#cm-badge button{border:0;background:none;color:#2563EB;cursor:pointer;font-size:11px;padding:0}' +
+    '#cm-stale{position:fixed;left:0;right:0;top:0;z-index:99998;padding:8px 12px;text-align:center;font-size:13px;background:#2563EB;color:#fff;font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif}' +
+    '#cm-stale button{margin-left:10px;padding:2px 10px;border:1px solid #fff;border-radius:6px;background:none;color:#fff;cursor:pointer}' +
     '@media print{#cm-badge,#cm-stale{display:none!important}}';
   document.head.appendChild(css);
 
