@@ -1,7 +1,7 @@
 // 담임의 노트 — Service Worker
 // 오프라인 사용을 위해 모든 리소스를 캐시합니다.
 
-const CACHE = 'classmanager-v33';
+const CACHE = 'classmanager-v34';
 const CORE = [
   './',
   './index.html',
@@ -15,7 +15,8 @@ const CORE = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(CORE))
+    // HTTP 캐시(GitHub Pages는 10분)를 거치지 않고 새 파일을 받아야 새 번들과 옛 index.html이 섞이지 않는다
+    caches.open(CACHE).then((cache) => cache.addAll(CORE.map((u) => new Request(u, { cache: 'reload' }))))
   );
   self.skipWaiting();
 });

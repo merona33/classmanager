@@ -567,11 +567,12 @@ td.g{color:#444}
 <table><colgroup>${cols.join("")}</colgroup><thead><tr>${th}</tr></thead><tbody>${rows}</tbody></table>
 <div class="ft"><span>남 ${m}명 · 여 ${list.length-m}명 · 계 ${list.length}명</span><span>${cmYmd()} 출력</span></div>
 </body></html>`}
-function CmRoster({classNo:e,students:r,onClose:CL}){
-const[o,setO]=_e.useState(cmRpLoad),fr=_e.useRef(),wr=_e.useRef(),[w,setW]=_e.useState(360);
+function cmRpCss(){if(document.getElementById("cm-rp-css"))return;const st=document.createElement("style");st.id="cm-rp-css";st.textContent=".cm-rp { width: 980px; max-width: 94vw; max-height: 90vh; } .cm-rp-body { display: flex; min-height: 0; flex: 1; overflow: hidden; } .cm-rp-opts { width: 300px; flex: 0 0 auto; padding: 16px 20px; overflow: auto; display: flex; flex-direction: column; gap: 14px; border-right: 1px solid var(--line); } .cm-rp-prev { flex: 1; min-width: 0; padding: 16px; overflow: auto; background: var(--paper-2); } .cm-rp-chks { display: flex; gap: 16px; } .cm-rp-chk { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-2); cursor: pointer; } .cm-rp-chk input { accent-color: var(--accent); width: 15px; height: 15px; } @media screen and (max-width: 768px) { .cm-rp { max-height: 94vh; } .cm-rp-body { flex-direction: column; overflow: auto; } .cm-rp-opts { width: auto; border-right: 0; border-bottom: 1px solid var(--line); overflow: visible; } .cm-rp-prev { overflow: visible; } }";document.head.appendChild(st)}
+function CmRoster({classNo:e,students:r,onClose:CL}){cmRpCss();
+const[o,setO]=_e.useState(cmRpLoad),fr=_e.useRef(),wr=_e.useRef(),[w,setW]=_e.useState({w:360,h:0});
 const up=p=>setO(x=>{const y={...x,...p};try{localStorage.setItem("cm-roster",JSON.stringify(y))}catch{}return y});
-const html=_e.useMemo(()=>cmRpHtml(o,r,e),[o,r,e]),L=o.orient==="landscape",PW=L?1123:794,PH=L?794:1123,sc=Math.min(1,w/PW);
-_e.useEffect(()=>{const f=()=>wr.current&&setW(Math.max(120,wr.current.clientWidth-32));f();window.addEventListener("resize",f);return()=>window.removeEventListener("resize",f)},[]);
+const html=_e.useMemo(()=>cmRpHtml(o,r,e),[o,r,e]),L=o.orient==="landscape",PW=L?1123:794,PH=L?794:1123,sc=Math.min(1,w.w/PW,w.h>0?w.h/PH:9);
+_e.useEffect(()=>{const f=()=>wr.current&&setW({w:Math.max(120,wr.current.clientWidth-32),h:window.innerWidth>768?Math.max(200,wr.current.clientHeight-32):0});f();window.addEventListener("resize",f);return()=>window.removeEventListener("resize",f)},[]);
 _e.useEffect(()=>{const f=ev=>ev.key==="Escape"&&CL();window.addEventListener("keydown",f);return()=>window.removeEventListener("keydown",f)},[CL]);
 const print=()=>{const win=fr.current&&fr.current.contentWindow;if(!win)return;const t0=document.title;document.title=`${cmCF(e)}_명렬표`;try{win.focus();win.print()}catch(err){alert("인쇄 창을 열 수 없어요: "+err.message)}setTimeout(()=>{document.title=t0},1000)};
 const seg=(val,opts,on)=>k.jsx("div",{className:"cm-gradepick",style:{gridTemplateColumns:`repeat(${opts.length},1fr)`,margin:0},children:opts.map(([v,lb])=>k.jsx("button",{type:"button",className:`cm-grade-b${val===v?" on":""}`,onClick:()=>on(v),children:lb},String(v)))});
